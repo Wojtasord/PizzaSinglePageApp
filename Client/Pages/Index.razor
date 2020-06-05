@@ -39,21 +39,29 @@
 
 <h1>Please enter your details below</h1>
 
-<fieldset>
-    <p>
-        <label class="col-form-label" for="name">Name:</label>
-        <input class="input-group-sm" id="name" @bind="State.Basket.Customer.Name"/>
-    </p>
-    <p>
-        <label class="col-form-label" for="street">Street:</label>
-        <input class="input-group-sm" id="street" @bind="State.Basket.Customer.Street"/>
-    </p>
-    <p>
-        <label class="form-check-label" for="city">City:</label>
-        <input class="input-group-sm" id="city" @bind="State.Basket.Customer.City"/>
-    </p>
-    <button class="btn btn-primary" @onclick="PlaceOrder">Checkout</button>
-</fieldset>
+<EditForm OnValidSubmit="PlaceOrder" Model="@State.Basket.Customer">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group row mb-1">
+        <label class="col-sm-3 col-form-label" for="Name">Name:</label>
+        <InputText class="form-control" @bind-Value="@State.Basket.Customer.Name" />
+        <ValidationMessage For="@(() => State.Basket.Customer.Name)" />
+    </div>
+    <div class="form-group row mb-1">
+        <label class="col-sm-3 col-form-label" for="Street">Street:</label>
+        <InputText class="form-control" @bind-Value="@State.Basket.Customer.Street" />
+        <ValidationMessage For="@(() => State.Basket.Customer.Street)" />
+    </div>
+    <div class="form-group row mb-1">
+        <label class="col-sm-3 col-form-label" for="City">City:</label>
+        <InputText class="form-control" @bind-Value="@State.Basket.Customer.City" />
+        <ValidationMessage For="@(() => State.Basket.Customer.City)" />
+    </div>
+    <div class="form-group mb-0">
+        <button type="submit" id="BtnRegister" class="btn btn-primary">Checkout</button>
+    </div>
+</EditForm>
+
 <p>@State.ToJson()</p>
 @code
 {
