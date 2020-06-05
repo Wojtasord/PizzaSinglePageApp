@@ -12,5 +12,10 @@ namespace PizzaSinglePageApp.Shared
         {
             Orders.Add(pizzaId);
         }
+
+        public void RemoveAt(in int index)
+        {
+            Orders.RemoveAt(index);
+        }
     }
 }
